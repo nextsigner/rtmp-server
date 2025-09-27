@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visualización RTMP a HLS</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+
+    <h1>Stream HLS en Chrome</h1>
+
+    <video id="video" controls autoplay width="640" height="360"></video>
+
+    <script>
+        // La URL de tu lista de reproducción HLS
+        // Usa la IP de tu Ubuntu si accedes desde otra máquina
+        var videoUrl = 'http://127.0.0.1:8080/hls/streamkey.m3u8'; 
+
+        if(Hls.isSupported()) {
+            var video = document.getElementById('video');
+            var hls = new Hls();
+            
+            // Carga la lista de reproducción HLS
+            hls.loadSource(videoUrl);
+            hls.attachMedia(video);
+            
+            hls.on(Hls.Events.MANIFEST_PARSED,function() {
+              video.play();
+            });
+        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            // Soporte nativo de HLS (principalmente en Safari o Edge antiguos)
+            video.src = videoUrl;
+            video.addEventListener('loadedmetadata',function() {
+                video.play();
+            });
+        }
+    </script>
+
+</body>
+</html>
