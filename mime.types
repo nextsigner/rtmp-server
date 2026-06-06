@@ -1,0 +1,6 @@
+types {
+    text/html                             html htm shtml;
+    text/css                              css;
+    application/vnd.apple.mpegurl         m3u8;
+    video/mp2t                            ts;
+}
