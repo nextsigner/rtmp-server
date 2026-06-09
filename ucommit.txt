@@ -1,1 +1,1 @@
-Se edita gitignore
+Se cambia destino de hls a tmp
