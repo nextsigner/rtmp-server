@@ -1,1 +1,1 @@
-Se crea configuración para Larix
+Se edita gitignore
